@@ -37,9 +37,9 @@ export class AppComponent implements OnInit {
    * @param cityName 
    */
   onSubmit(cityName: string) {
-    this.barChartData = [{ data: [], label: 'Highest Temperature' },
-    { data: [], label: 'Lowest Temperature' }];
     if (cityName) {
+      this.barChartData = [{ data: [], label: 'Highest Temperature' },
+      { data: [], label: 'Lowest Temperature' }];
       this.loader = true;
       this.weatherService.getWeatherForecast(cityName).subscribe(data => {
         this.weatherForecastData = data;
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
           }
         };
         console.log(data);
-        
+
         this.barChartLabels = Object.keys(data);
         this.barChartLabels.forEach(label => {
           this.barChartData[0].data.push(data[label]['Highest Temperature']);
