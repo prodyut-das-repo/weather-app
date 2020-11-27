@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherService } from './service/weather.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule, ThemeService } from 'ng2-charts';
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { ChartsModule, ThemeService } from 'ng2-charts';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule,ReactiveFormsModule,
     ChartsModule
   ],
   providers: [WeatherService, ThemeService],

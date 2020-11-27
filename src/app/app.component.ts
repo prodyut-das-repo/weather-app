@@ -44,10 +44,10 @@ export class AppComponent implements OnInit {
       this.loader = true;
       this.weatherService.getWeatherForecast(cityName).subscribe(data => {
         this.weatherForecastData = data;
-        this.day1 = this.findDay(new Date((this.weatherForecastData.list[2].dt) * 1000).getDay());
-        this.day2 = this.findDay(new Date((this.weatherForecastData.list[10].dt) * 1000).getDay());
-        this.day3 = this.findDay(new Date((this.weatherForecastData.list[20].dt) * 1000).getDay());
-        this.day4 = this.findDay(new Date((this.weatherForecastData.list[30].dt) * 1000).getDay());
+        this.day1 = this.findDay(new Date((this.weatherForecastData.list[10].dt) * 1000).getDay());
+        this.day2 = this.findDay(new Date((this.weatherForecastData.list[20].dt) * 1000).getDay());
+        this.day3 = this.findDay(new Date((this.weatherForecastData.list[25].dt) * 1000).getDay());
+        this.day4 = this.findDay(new Date((this.weatherForecastData.list[35].dt) * 1000).getDay());
         data = {
           "Day1": {
             "Highest Temperature": this.weatherForecastData.list[2].main.temp_max,
@@ -66,8 +66,6 @@ export class AppComponent implements OnInit {
             "Lowest Temperature": this.weatherForecastData.list[30].main.temp_min
           }
         };
-        console.log(data);
-
         this.barChartLabels = Object.keys(data);
         this.barChartLabels.forEach(label => {
           this.barChartData[0].data.push(data[label]['Highest Temperature']);
@@ -90,44 +88,4 @@ export class AppComponent implements OnInit {
     const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return dayName[weekday];
   }
-
-  // chart
-  // public barChartLabels = [this.day1,this.day2,this.day3,this.day4];
-  // public barChartType = 'bar';
-  // public barChartLegend = true;
-  // public barChartData = [
-  //   { data: [65, 59, 80, 60, 50], label: 'Highest Temperature' },
-  //   { data: [28, 48, 40, 81], label: 'Lowest Temperature' }
-  // ];
-  // public barChartOptions1 = {
-  //   options: {
-  //     title: {
-  //       display: true,
-  //       text: 'Weather Chart'
-  //     },
-  //     scales: {
-  //       xAxes: [{
-  //         position: 'bottom',
-  //         gridLines: {
-  //           zeroLineColor: "rgba(0,255,0,1)"
-  //         },
-  //         scaleLabel: {
-  //           display: true,
-  //           labelString: 'x axis'
-  //         },
-  //         stacked: true
-  //       }],
-  //       yAxes: [{
-  //         position: 'left',
-  //         gridLines: {
-  //           zeroLineColor: "rgba(0,255,0,1)"
-  //         },
-  //         scaleLabel: {
-  //           display: true,
-  //           labelString: 'y axis'
-  //         }
-  //       }]
-  //     }
-  //   }
-  // };
 }

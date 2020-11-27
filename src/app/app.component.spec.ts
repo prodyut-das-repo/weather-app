@@ -1,35 +1,40 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { AppComponent } from "./app.component";
+import { WeatherService } from './service/weather.service';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  beforeEach(() => {
+    const weatherServiceStub = {
+      getWeatherForecast: () => ({ subscribe: f => f({}) })
+
+    };
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [AppComponent],
+      providers: [{ provide: WeatherService, useValue: weatherServiceStub }]
+    });
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+  });
+  it('can load instance', () => {
+    expect(component).toBeTruthy();
+  });
+  it('makes call to ngOnInit ', inject([WeatherService],(weatherService) => {
+    spyOn(component, 'ngOnInit').and.callThrough();
+    fixture.whenStable().then(() => {
+      component.ngOnInit();
+      weatherService.getWeatherForecast('London').subscribe(result => expect(result).toBeDefined());
+      expect(component.ngOnInit()).toHaveBeenCalled();
+    });
   }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  it('makes call to findDay ',() => {
+    spyOn(component, 'findDay').and.callThrough();
+    fixture.whenStable().then(() => {
+      component.findDay(2);
+      expect(component.findDay).toHaveBeenCalled();
+    });
   });
-
-  it(`should have as title 'weather-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('weather-app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('weather-app app is running!');
-  });
-});
+})
