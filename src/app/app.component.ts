@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
    * @param cityName 
    */
   onSubmit(cityName: string) {
+    cityName = cityName.trim();
     if (cityName) {
       this.barChartData = [{ data: [], label: 'Highest Temperature' },
       { data: [], label: 'Lowest Temperature' }];
