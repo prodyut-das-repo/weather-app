@@ -1,27 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class WeatherService {
-  constructor(private http: HttpClient) {  }
+  appId = '45f4dd45e0f724512ba044c5a2caf4bc';
+  baseUrl = 'http://api.openweathermap.org/data/2.5/';
+  units = 'metric'
+  constructor(private http: HttpClient) { }
 
   getWeatheritemsbyCity(cityName: string): Observable<any> {
     return this.http.get(
-      environment.baseUrl +
+      this.baseUrl +
       'weather?q=' + cityName +
-      '&appid=' + environment.appId +
-      '&units=' + environment.units
+      '&appid=' + this.appId +
+      '&units=' + this.units
     )
   }
 
   getWeatherForecast(cityName: string): Observable<any> {
     return this.http.get(
-      environment.baseUrl +
+      this.baseUrl +
       'forecast?q=' + cityName +
-      '&appid=' + environment.appId +
-      '&units=' + environment.units
+      '&appid=' + this.appId +
+      '&units=' + this.units
     )
   }
 
