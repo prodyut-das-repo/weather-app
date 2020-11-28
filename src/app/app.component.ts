@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
       this.weatherService.getWeatherForecast(cityName).subscribe(data => {
         this.weatherForecastData = data;
         this.day1 = this.findDay(new Date((this.weatherForecastData.list[10].dt) * 1000).getDay());
-        this.day2 = this.findDay(new Date((this.weatherForecastData.list[20].dt) * 1000).getDay());
+        this.day2 = this.findDay(new Date((this.weatherForecastData.list[15].dt) * 1000).getDay());
         this.day3 = this.findDay(new Date((this.weatherForecastData.list[25].dt) * 1000).getDay());
         this.day4 = this.findDay(new Date((this.weatherForecastData.list[35].dt) * 1000).getDay());
         data = {
