@@ -8,7 +8,11 @@ export class WeatherService {
   baseUrl = 'http://api.openweathermap.org/data/2.5/';
   units = 'metric'
   constructor(private http: HttpClient) { }
-
+  /**
+   * Gets weatheritemsby city
+   * @param cityName 
+   * @returns weatheritemsby city 
+   */
   getWeatheritemsbyCity(cityName: string): Observable<any> {
     return this.http.get(
       this.baseUrl +
@@ -17,7 +21,11 @@ export class WeatherService {
       '&units=' + this.units
     )
   }
-
+  /**
+   * Gets weather forecast
+   * @param cityName 
+   * @returns weather forecast 
+   */
   getWeatherForecast(cityName: string): Observable<any> {
     return this.http.get(
       this.baseUrl +

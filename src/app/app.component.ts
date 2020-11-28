@@ -83,7 +83,11 @@ export class AppComponent implements OnInit {
         });
     }
   }
-
+  /**
+   * Finds day
+   * @param weekday 
+   * @returns  
+   */
   findDay(weekday: number) {
     const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return dayName[weekday];
