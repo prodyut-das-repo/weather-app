@@ -54,8 +54,8 @@ export class AppComponent implements OnInit {
             "Lowest Temperature": this.weatherForecastData.list[2].main.temp_min
           },
           "Day2": {
-            "Highest Temperature": this.weatherForecastData.list[10].main.temp_max,
-            "Lowest Temperature": this.weatherForecastData.list[10].main.temp_min
+            "Highest Temperature": this.weatherForecastData.list[15].main.temp_max,
+            "Lowest Temperature": this.weatherForecastData.list[15].main.temp_min
           },
           "Day3": {
             "Highest Temperature": this.weatherForecastData.list[20].main.temp_max,
