@@ -5,8 +5,9 @@
       <div class="date-container">
         <h2 class="date-dayname">Weather today</h2><span
           class="date-day">{{(weatherForecastData?.list[0]?.dt)*1000 | date: 'fullDate'}}</span>
-        <h2 class="location">{{weatherForecastData?.city?.name}}</h2><br><span>Feels like
-          {{weatherForecastData?.list[0]?.main?.feels_like}}°C</span>
+        <h2 class="location">{{weatherForecastData?.city?.name}}</h2><br><span>Sun Rises at :
+          {{sunRise*1000 | date: 'shortTime'}}</span><br><span>Sun sets at :
+            {{sunSet*1000 | date: 'shortTime'}}</span>
       </div>
       <div class="weather-container">
         <h1 class="weather-temp">{{weatherForecastData?.list[0]?.main?.temp}}°C</h1>

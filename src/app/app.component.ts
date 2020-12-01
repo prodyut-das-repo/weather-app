@@ -27,6 +27,8 @@ export class AppComponent implements OnInit {
     { data: [], label: 'Lowest Temperature' }
   ];
   day5: string;
+  sunRise: any;
+  sunSet: any;
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
@@ -48,6 +50,8 @@ export class AppComponent implements OnInit {
       this.loader = true;
       this.weatherService.getWeatherForecast(cityName).subscribe(data => {
         this.weatherForecastData = data;
+        this.sunRise = data.city.sunrise;
+        this.sunSet = data.city.sunset;
         this.day1 = this.findDay(new Date((this.weatherForecastData.list[0].dt) * 1000).getDay() +1);
         this.day2 = this.findDay(new Date((this.weatherForecastData.list[8].dt) * 1000).getDay() +1);
         this.day3 = this.findDay(new Date((this.weatherForecastData.list[16].dt) * 1000).getDay() +1);
