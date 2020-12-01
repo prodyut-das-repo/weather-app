@@ -55,20 +55,24 @@ export class AppComponent implements OnInit {
         this.day5 = this.findDay((new Date((this.weatherForecastData.list[32].dt) * 1000).getDay() + 1) === 7 ? 0 : new Date((this.weatherForecastData.list[0].dt) * 1000).getDay() +1);
         data = {
           "Day1": {
-            "Highest Temperature": this.weatherForecastData.list[2].main.temp_max,
-            "Lowest Temperature": this.weatherForecastData.list[2].main.temp_min
+            "Highest Temperature": this.weatherForecastData.list[0].main.temp_max,
+            "Lowest Temperature": this.weatherForecastData.list[0].main.temp_min
           },
           "Day2": {
-            "Highest Temperature": this.weatherForecastData.list[15].main.temp_max,
-            "Lowest Temperature": this.weatherForecastData.list[15].main.temp_min
+            "Highest Temperature": this.weatherForecastData.list[8].main.temp_max,
+            "Lowest Temperature": this.weatherForecastData.list[8].main.temp_min
           },
           "Day3": {
-            "Highest Temperature": this.weatherForecastData.list[20].main.temp_max,
-            "Lowest Temperature": this.weatherForecastData.list[20].main.temp_min
+            "Highest Temperature": this.weatherForecastData.list[16].main.temp_max,
+            "Lowest Temperature": this.weatherForecastData.list[16].main.temp_min
           },
           "Day4": {
-            "Highest Temperature": this.weatherForecastData.list[30].main.temp_max,
-            "Lowest Temperature": this.weatherForecastData.list[30].main.temp_min
+            "Highest Temperature": this.weatherForecastData.list[24].main.temp_max,
+            "Lowest Temperature": this.weatherForecastData.list[24].main.temp_min
+          },
+          "Day5": {
+            "Highest Temperature": this.weatherForecastData.list[32].main.temp_max,
+            "Lowest Temperature": this.weatherForecastData.list[32].main.temp_min
           }
         };
         this.barChartLabels = Object.keys(data);
