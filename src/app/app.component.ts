@@ -26,12 +26,16 @@ export class AppComponent implements OnInit {
     { data: [], label: 'Highest Temperature' },
     { data: [], label: 'Lowest Temperature' }
   ];
+  day5: string;
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
-    this.onSubmit('London');
+    this.onSubmit('Rome');
   }
 
+  cityDetails(id: string) {
+    this.onSubmit(id);
+  }
   /**
    * Determines whether submit on
    * @param cityName 
@@ -44,10 +48,11 @@ export class AppComponent implements OnInit {
       this.loader = true;
       this.weatherService.getWeatherForecast(cityName).subscribe(data => {
         this.weatherForecastData = data;
-        this.day1 = this.findDay(new Date((this.weatherForecastData.list[10].dt) * 1000).getDay());
-        this.day2 = this.findDay(new Date((this.weatherForecastData.list[15].dt) * 1000).getDay());
-        this.day3 = this.findDay(new Date((this.weatherForecastData.list[25].dt) * 1000).getDay());
-        this.day4 = this.findDay(new Date((this.weatherForecastData.list[35].dt) * 1000).getDay());
+        this.day1 = this.findDay(new Date((this.weatherForecastData.list[0].dt) * 1000).getDay() +1);
+        this.day2 = this.findDay(new Date((this.weatherForecastData.list[8].dt) * 1000).getDay() +1);
+        this.day3 = this.findDay(new Date((this.weatherForecastData.list[16].dt) * 1000).getDay() +1);
+        this.day4 = this.findDay(new Date((this.weatherForecastData.list[24].dt) * 1000).getDay() +1);
+        this.day5 = this.findDay((new Date((this.weatherForecastData.list[32].dt) * 1000).getDay() + 1) === 7 ? 0 : new Date((this.weatherForecastData.list[0].dt) * 1000).getDay() +1);
         data = {
           "Day1": {
             "Highest Temperature": this.weatherForecastData.list[2].main.temp_max,

@@ -19,7 +19,8 @@
           <h5> <span class="cloud">{{weatherForecastData?.list[0]?.weather[0]?.description}}</span>
             <div class="clear"></div>
           </h5>
-          <div class="humidity"> <span class="title">Humidity</span><span class="value">{{weatherForecastData?.list[0]?.main?.humidity}} %</span>
+          <div class="humidity"> <span class="title">Humidity</span><span
+              class="value">{{weatherForecastData?.list[0]?.main?.humidity}} %</span>
             <div class="clear"></div>
           </div>
           <div class="wind"> <span class="title">Wind</span><span
@@ -29,16 +30,13 @@
         </div>
       </div>
       <div class="week-container">
-        <label class="label-chart">Get details on chart of this four consecutive days</label>
+        <label class="label-chart">Click to get details of five European cities</label>
         <ul class="week-list">
-          <li class="active"><span class="day-name">{{day1}}</span><span
-              class="day-temp">{{weatherForecastData?.list[10]?.main?.temp}}°C</span></li>
-          <li><span class="day-name">{{day2}}</span><span
-              class="day-temp">{{weatherForecastData?.list[20]?.main?.temp}}°C</span></li>
-          <li><span class="day-name">{{day3}}</span><span
-              class="day-temp">{{weatherForecastData?.list[25]?.main?.temp}}°C</span></li>
-          <li><span class="day-name">{{day4}}</span><span
-              class="day-temp">{{weatherForecastData?.list[30]?.main?.temp}}°C</span></li>
+          <li class="active" (click)="cityDetails('Rome')"><span class="day-name">Rome</span></li>
+          <li (click)="cityDetails('London')"><span class="day-name">London</span></li>
+          <li (click)="cityDetails('Lisbon')"><span class="day-name">Lisbon</span></li>
+          <li (click)="cityDetails('Barcelona')"><span class="day-name">Barcelona</span></li>
+          <li (click)="cityDetails('Istanbul')"><span class="day-name">Istanbul</span></li>
           <div class="clear"></div>
         </ul>
       </div>
@@ -64,6 +62,28 @@
     </div>
   </div>
   <div class="chart">
+    <label class="chart-label">The sea level in the next 5 days at 9:00 (m MSL)</label>
+    <div class="table-weather">
+      <table>
+        <tr>
+          <th class="z1">Place</th>
+          <th class="z1">{{day1}}</th>
+          <th class="z1">{{day2}}</th>
+          <th class="z1">{{day3}}</th>
+          <th class="z1">{{day4}}</th>
+          <th class="z1">{{day5}}</th>
+        </tr>
+        <tr>
+          <th class="z2">{{weatherForecastData?.city?.name}}</th>
+          <td>{{weatherForecastData?.list[0]?.main?.sea_level}}</td>
+          <td>{{weatherForecastData?.list[8]?.main?.sea_level}}</td>
+          <td>{{weatherForecastData?.list[16]?.main?.sea_level}}</td>
+          <td>{{weatherForecastData?.list[24]?.main?.sea_level}}</td>
+          <td>{{weatherForecastData?.list[32]?.main?.sea_level}}</td>
+        </tr>
+      </table>
+    </div>
+    <br>
     <label class="chart-label">Chart is based on data received from API</label>
     <div>
       <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
@@ -71,4 +91,3 @@
     </div>
   </div>
 </div>
-
