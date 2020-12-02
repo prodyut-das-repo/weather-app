@@ -52,11 +52,11 @@ export class AppComponent implements OnInit {
         this.weatherForecastData = data;
         this.sunRise = data.city.sunrise;
         this.sunSet = data.city.sunset;
-        this.day1 = this.findDay(new Date((this.weatherForecastData.list[0].dt) * 1000).getDay() +1);
-        this.day2 = this.findDay(new Date((this.weatherForecastData.list[8].dt) * 1000).getDay() +1);
-        this.day3 = this.findDay(new Date((this.weatherForecastData.list[16].dt) * 1000).getDay() +1);
-        this.day4 = this.findDay(new Date((this.weatherForecastData.list[24].dt) * 1000).getDay() +1);
-        this.day5 = this.findDay((new Date((this.weatherForecastData.list[32].dt) * 1000).getDay() + 1) === 7 ? 0 : new Date((this.weatherForecastData.list[0].dt) * 1000).getDay() +1);
+        this.day1 = this.findDay((new Date((this.weatherForecastData.list[0].dt) * 1000).getDay() + 1) === 7 ? 0 : new Date((this.weatherForecastData.list[0].dt) * 1000).getDay() +1);
+        this.day2 = this.findDay((new Date((this.weatherForecastData.list[8].dt) * 1000).getDay() + 1) === 7 ? 0 : new Date((this.weatherForecastData.list[8].dt) * 1000).getDay() +1);
+        this.day3 = this.findDay((new Date((this.weatherForecastData.list[16].dt) * 1000).getDay() + 1) === 7 ? 0 : new Date((this.weatherForecastData.list[16].dt) * 1000).getDay() +1);
+        this.day4 = this.findDay((new Date((this.weatherForecastData.list[24].dt) * 1000).getDay() + 1) === 7 ? 0 : new Date((this.weatherForecastData.list[24].dt) * 1000).getDay() +1);
+        this.day5 = this.findDay((new Date((this.weatherForecastData.list[32].dt) * 1000).getDay() + 1) === 7 ? 0 : new Date((this.weatherForecastData.list[32].dt) * 1000).getDay() +1);
         data = {
           "Day1": {
             "Highest Temperature": this.weatherForecastData.list[0].main.temp_max,
